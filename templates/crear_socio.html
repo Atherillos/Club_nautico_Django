@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+    {% block titulo %}Registrar socio{% endblock titulo %}
+
+    {% block contenido %}
+        <br>
+
+        <form method = "post">
+
+            {% csrf_token %}
+            {% comment %} {{ form.as_p }} {% endcomment %}
+            {% for field in form.visible_fields %}
+                <br>
+
+                <div class="row">
+                    <div class ="col-md-4"></div>
+                    <div class= "col-md-3">
+                        <div class="input-group input-group-sm mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">{{field.label}}</span>
+                            {{field}}
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+                <button type="submit" class="btn btn-outline-dark", id="boton1">REGISTRAR</button>
+        </form>
+
+    {% endblock contenido %}

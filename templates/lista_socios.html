@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+
+    {% block titulo %}Lista de socios{% endblock titulo %}
+
+    {% block contenido %}
+        <div class="row">
+            <div class="col-md-1">
+
+            </div>
+            <div class= "col-md-9">
+                <h1 align="center">LISTA DE SOCIOS</h1>
+                <br>
+                <div class ="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">DNI</th>
+                            <th scope="col">Telefono</th>
+                            <th scope="col">Direccion</th>
+                            <th scope="col">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for socio in Socios %}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{socio.nombre}}</td>
+                                    <td>{{socio.apellido}}</td>
+                                    <td>{{socio.dni}}</td>
+                                    <td>{{socio.telefono}}</td>
+                                    <td>{{socio.direccion}}</td>
+                                    <td><a href="{% url 'editar_socio' socio.id %}"><button type="button" class="btn btn-outline-info">EDITAR</button></a> <a href="{% url 'eliminar_socio' socio.id %}"><button type="button" class="btn btn-outline-danger">ELIMINAR</button></a></td>
+                                </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+                <a href="{% url 'crear_socio' %}"><button type="button" class="btn btn-outline-secondary">REGISTRAR NUEVO SOCIO</button></a>
+            </div>
+        </div>
+    {% endblock contenido %}

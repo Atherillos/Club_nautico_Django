@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% block titulo %}Lista salidas de barcos{% endblock titulo %}
+
+{% block contenido %}
+        <div class="row">
+            {% comment %} <div class="col-md-1">
+
+            </div> {% endcomment %}
+            <div class= "col-md-12">
+                <h1 align="center">LISTA DE SALIDAS</h1>
+                <br>
+                <div class ="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Datos</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Hora</th>
+                            <th scope="col">Destino</th>
+                            <th scope="col">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for salida in Salidas_barcos %}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{salida.id_barco}}</td>
+                                    <td>{{salida.fecha}}</td>
+                                    <td>{{salida.hora}}</td>
+                                    <td>{{salida.destino}}</td>
+                                    <td><a href="{% url 'editar_salidas_barcos' salida.id %}"><button type="button" class="btn btn-outline-info">EDITAR</button></a> <a href="{% url 'eliminar_salidas_barcos' salida.id %}"><button type="button" class="btn btn-outline-danger">ELIMINAR</button></a></td>
+                                </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+                <a href="{% url 'crear_salidas_barcos' %}"><button type="button" class="btn btn-outline-secondary", id="boton_salidas_barcos">REGISTRAR NUEVO SALIDA</button></a>
+            </div>
+        </div>
+    {% endblock contenido %}
+
+
+

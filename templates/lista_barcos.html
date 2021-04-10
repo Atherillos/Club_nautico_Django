@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block titulo %}Lista de barcos{% endblock titulo %}
+
+{% block contenido %}
+        <div class="row">
+            <div class="col-md-1">
+
+            </div>
+            <div class= "col-md-10">
+                <h1 align="center">LISTA DE BARCOS</h1>
+                <br>
+                <div class ="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Datos del socio</th>
+                            <th scope="col">Nombre del barco</th>
+                            <th scope="col">Numero de amarre</th>
+                            <th scope="col">Numero de cuota</th>
+                            <th scope="col">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for barco in barcos %}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{barco.id_socio}}</td>
+                                    <td>{{barco.nom_barco}}</td>
+                                    <td>{{barco.num_amarre}}</td>
+                                    <td>{{barco.num_cuota}}</td>
+                                    <td><a href="{% url 'editar_barco' barco.id %}"><button type="button" class="btn btn-outline-info">EDITAR</button></a> <a href="{% url 'eliminar_barco' barco.id %}"><button type="button" class="btn btn-outline-danger">ELIMINAR</button></a></td>
+                                </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+                <a href="{% url 'crear_barco' %}"><button type="button" class="btn btn-outline-secondary">REGISTRAR NUEVO BARCO</button></a>
+            </div>
+        </div>
+    {% endblock contenido %}
+
+
